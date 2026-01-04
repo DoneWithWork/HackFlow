@@ -1,4 +1,5 @@
 import { env } from '$env/dynamic/private';
+import { systemInstructions } from '$lib/constants';
 import { chatSchema } from '$lib/schema';
 import { GoogleGenAI } from '@google/genai';
 import { fail } from '@sveltejs/kit';
@@ -13,6 +14,7 @@ export const actions = {
 	chat: async (event) => {
 		const data = await event.request.formData();
 		const parsedData = chatSchema.safeParse(Object.fromEntries(data));
+		console.log(parsedData);
 		if (!parsedData.success) {
 			console.log(z.treeifyError(parsedData.error).properties);
 			return fail(400, {
@@ -24,15 +26,7 @@ export const actions = {
 		const response = await ai.models.generateContent({
 			model: 'gemini-2.5-flash',
 			config: {
-				systemInstruction: `
-			Ensure that:
-
-			- The output is **valid JSON** only, no explanations, extra text or even any extra tags I MUST be able to use Json.parse to successfully one shot parse this response.
-			- Use the team size to reasonably allocate members across roles.
-			- The image prompt should be descriptive enough for AI image generation (e.g., futuristic hackathon project concept illustration).
-
-			Output the following to me in plain text so I may parse it:
-							`
+				systemInstruction: systemInstructions
 			},
 			contents: `
 			You are an AI Hackathon Idea Generator. Given the following input:
@@ -56,7 +50,6 @@ export const actions = {
 				"Designer": "number of team members",
 				"OtherRoles": "if any"
 			},
-			"imagePrompt": "A short text prompt describing an image representing the project for AI image generation"
 			}
 
 			`

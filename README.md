@@ -44,7 +44,7 @@ Before you begin, ensure you have the following installed:
 -   [Node.js](https://nodejs.org/) (v18 or later recommended)
 -   [npm](https://www.npmjs.com/) (comes with Node.js)
 -   [Docker](https://www.docker.com/products/docker-desktop/) (for Episode 4)
-
+-   [Pnpm]
 ## Getting Started
 
 To get started with any of the workshops or the completed project, navigate to the respective directory and install the dependencies:
@@ -52,13 +52,13 @@ To get started with any of the workshops or the completed project, navigate to t
 ```bash
 # Example for Workshop 1
 cd workshop_1/start
-npm install
+pnpm install
 ```
 
 Once dependencies are installed, you can run the development server:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 This will start the application on `http://localhost:5173`.
@@ -67,12 +67,12 @@ This will start the application on `http://localhost:5173`.
 
 Each project includes the following scripts:
 
--   `npm run dev`: Starts the development server.
--   `npm run build`: Builds the application for production.
--   `npm run preview`: Previews the production build locally.
--   `npm run check`: Runs Svelte check to validate types.
--   `npm run lint`: Lints the code using ESLint and Prettier.
--   `npm run format`: Formats the code with Prettier.
+-   `pnpm run dev`: Starts the development server.
+-   `pnpm run build`: Builds the application for production.
+-   `pnpm run preview`: Previews the production build locally.
+-   `pnpm run check`: Runs Svelte check to validate types.
+-   `pnpm run lint`: Lints the code using ESLint and Prettier.
+-   `pnpm run format`: Formats the code with Prettier.
 
 ## How to Use This Repository
 
